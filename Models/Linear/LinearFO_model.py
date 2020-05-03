@@ -68,11 +68,12 @@ def Params(V):
     K, τ = 0.06519652149867068 , 265.02732767188155*V
     return K, τ 
 
-for V in [26.8, 80.51, 62, 70]:
+for V in [30, 40,50,60,70,80,90]:
     plt.plot(tspan, fo(tspan, *Params(V)), label = 'Volume = ' + str(V)+' L')
 plt.plot(xdata, ydata, label = 'Volume = 70 L (Experimental Data)')
 plt.legend(loc = 'best')
 plt.ylabel('Temperature, °C')
 plt.xlabel('Time, s')
 plt.axis([-15, 11000,25, 100 ])
+plt.savefig('I:/UserData/Documents/ChemEng/CSC/Lockdown/Figures/Model Steps/Linear Model/Linear_Model_V.png', dpi = 200)
 plt.show()
