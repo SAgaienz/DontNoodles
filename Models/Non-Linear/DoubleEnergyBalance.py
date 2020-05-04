@@ -18,24 +18,7 @@ def HSF(x, x_s):
     if x>=x_s:
         return 1
 
-def h_func1(T, T_star):
-    if T<95:
-        return 15 + np.exp(0.15827*(T - T_star))
-    if T>=95:
-        return 113.5
-
-def Pure_int(t, T):
-    Ts = 25+273.15
-    h = 15
-    Cp = 4186
-    V = 50 # l
-    Ac = 0.2206 #m^2
-    ht = 50e-3/Ac
-    dia = 0.530 #m
-    A = np.pi*dia*ht
-    return (U(t)  - h*A*(T - Ts))/(Cp*V)
-
-def diff1(t, T):
+def diff(t, T):
     Q = U(t)
     Ts = 25+273.15
     Cp = 4186 #J/kg.K
@@ -45,23 +28,19 @@ def diff1(t, T):
     dia = 0.530 #m
     A = np.pi*dia*ht
     T_star = 66 + 273.15
-    # κ = lambda T: 1.2*T
-    h = h_func1(T, T_star) #W/m2.K
+    h = 15
     σ = 5.67e-8 #W/m2.K
-    dTdt = (Q  - h*A*(T - Ts))/(Cp*V)
+    dmdt = 
+    dTdt = (Q  - h*A*(T - Ts) - dmdt*λ*HSF(T, 95))/(Cp*V)
     return dTdt
-
-
 tf = 20000
 tspan = np.linspace(0, tf, 70000)
 T0 = 273.15+25
 
-ans1 = solve_ivp(diff1, [0, tf], [T0], dense_output=True).sol(tspan)[0]
-ans2 = solve_ivp(Pure_int,[0, tf], [T0], dense_output=True).sol(tspan)[0]
+ans1 = solve_ivp(diff, [0, tf], [T0], dense_output=True).sol(tspan)[0]
 
 fig, ax1 = plt.subplots()
 ax1.plot(tspan, [T-273.15 for T in ans1] )
-ax1.plot(tspan, [T-273.15 for T in ans2])
 ax2 = plt.twinx()
 ax2.plot(tspan, [U(t) for t in tspan], alpha = 0.6,color = 'r')
 plt.show()
@@ -69,5 +48,3 @@ plt.show()
 
 Tspan = np.linspace(25, 110, 95-25+1)
 
-plt.plot(Tspan, [h_func1(T, 66) for T in Tspan])
-plt.show()
