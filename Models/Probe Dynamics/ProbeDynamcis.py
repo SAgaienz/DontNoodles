@@ -3,18 +3,37 @@ import numpy as np
 import scipy.signal as sig 
 import matplotlib.pyplot as plt 
 from scipy.optimize import curve_fit
+from datetime import datetime
 
-df = pd.read_csv('Probe Dynamics\ProbeData.csv')
+# Parsing and cleaning....
+df_raw = pd.read_csv('Data\ProbeDynamics.csv')
+is_Aux = df_raw['name'] == 'AUX'
+df_Aux = df_raw[is_Aux]
+df_Aux = df_Aux.reset_index(drop=True)
+df_Aux = df_Aux[0:113]
+def time_delta_parser(t_str_ls):
+    date_format = "%Y-%m-%dT%H:%M:%S.%f"
+    ls = []
+    t0 = datetime.strptime(t_str_ls[0], date_format)
+    for t in t_str_ls:
+        dt_item = datetime.strptime(t, date_format)
+        ls.append((dt_item - t0).total_seconds())
 
+    return ls
 
-xdata, ydata = df['time'].tolist(), df['dtemp'].tolist()
-xdata = [int(x) for x in xdata]
+time_str_list = df_Aux['time'].tolist()
+
+#data we can use to fit FO model:
+d_time = time_delta_parser(time_str_list)
+d_temp = [i - df_Aux['tem'].tolist()[0] for i in df_Aux['tem'].tolist()]
+
+xdata, ydata = d_time, d_temp
+
 def U(t):
     if t<196:
         return 0
     if t>=196:
-        return 72
-
+        return 68.3125
 
 def resp(xdata, K, τ):
     res = []

@@ -140,7 +140,7 @@ try:
         plt.grid()
         fig.savefig('Figures/Plots_from_Database_plotter_script/'+ name_of_plot, dpi = 300)
         print('Plotted')
-
+    
     xdata, ydata = data_to_plot(which_db, which_tab, probes_to_plt)
     plotter(xdata, ydata)
 

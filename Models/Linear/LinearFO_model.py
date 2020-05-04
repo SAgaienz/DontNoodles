@@ -5,10 +5,10 @@ from scipy.optimize import curve_fit, fsolve
 from scipy.signal import lti, lsim
 from scipy.interpolate import interp1d
 
+df_Aux = pandas.read_csv('Data\Cleaned_70L_Step_data.csv')
 # 70L step test data
-df = pandas.read_csv('Data/70L_Step_data_Cleaned.csv')
 
-xdata, ydata = df['time'].tolist(), df['tem'].tolist()
+xdata, ydata = df_Aux['time'].tolist(), df_Aux['tem'].tolist()
 xdata1, ydata1 = xdata[0:1400], ydata[0:1400]
 
 
@@ -75,5 +75,5 @@ plt.legend(loc = 'best')
 plt.ylabel('Temperature, °C')
 plt.xlabel('Time, s')
 plt.axis([-15, 11000,25, 100 ])
-plt.savefig('I:/UserData/Documents/ChemEng/CSC/Lockdown/Figures/Model Steps/Linear Model/Linear_Model_V.png', dpi = 200)
+plt.savefig('Figures/Model Steps/Linear Model/Linear_Model_V.png', dpi = 200)
 plt.show()
