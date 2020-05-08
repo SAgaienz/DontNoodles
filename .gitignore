@@ -2,3 +2,4 @@
 *.jpg
 *.db
 *.csv
+*.pickle
