@@ -3,10 +3,6 @@ import matplotlib.pyplot as plt
 from matplotlib import cm
 from matplotlib.ticker import LinearLocator, FormatStrFormatter
 from mpl_toolkits.mplot3d import Axes3D
-import pickle
-
-
-
 
 ΔH_vap = lambda T: 2396.4e3 #J/kg
 A_p_V = lambda V: 7.54717e-3*V 
@@ -39,4 +35,3 @@ fig.colorbar(cf, ax=ax2, label = 'Element Power, kW')
 # ax.zaxis.set_major_formatter(FormatStrFormatter('%.02f'))
 
 plt.show()
-pickle.dump(fig, open('FigureObject.fig.pickle', 'wb'))
