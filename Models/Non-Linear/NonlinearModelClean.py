@@ -4,6 +4,8 @@ from scipy.integrate import solve_ivp
 from scipy.interpolate import interp1d
 import pandas
 
+df = pandas.read_csv('Data\Cleaned_70L_Step_data.csv')
+xdata, ydata = df['time'].tolist(), df['tem'].tolist()
 
 
 def NonLinearModel(tspan, U_Func, sys_args):
@@ -20,7 +22,7 @@ def NonLinearModel(tspan, U_Func, sys_args):
         return (r_evap_max*κ)/(1 + np.exp(-b*(T - mdpnt))) # kg H2O/s (Logistic Curve)
 
     def nonlinear_mod(t, arr, args): 
-        T, V, m_v = arr     #  All T input as °C
+        T, V, m_v = arr #  All T input as °C
         Ts, Tboil, T_evap_start, h = args
         T, Ts, Tboil, T_evap_start = T + 273.15,  Ts + 273.15, Tboil + 273.15, T_evap_start + 273.15
         
@@ -64,7 +66,8 @@ argus = [T0, V0, m_v0, Ts, Tboil, T_ev_s, h]
 _, ans, Uspan = NonLinearModel(tspan, U1, argus)
 
 plt.subplot(2,1,1)
-plt.plot(tspan, ans[0])
+plt.plot(tspan/3600, ans[0])
+plt.scatter([x/3600 for x in xdata], ydata, color = 'r')
 plt.subplot(2,1,2)
-plt.plot(tspan, [U1(t) for t in tspan])
+plt.plot(tspan/3600, Uspan)
 plt.show()
