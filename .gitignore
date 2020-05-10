@@ -5,3 +5,5 @@
 *.pickle
 *.ipynb_checkpoints
 *.vscode
+*.gif
+*.mp4
