@@ -4,7 +4,7 @@ from matplotlib import cm
 from matplotlib.ticker import LinearLocator, FormatStrFormatter
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib.animation import FuncAnimation, writers
-
+from dataconfig import datadir
 
 def HVS(T, Ts):
     return np.heaviside(T - Ts, 1)
@@ -49,7 +49,11 @@ def animate(i):
     return fig,
 
 # Animate
-anim = FuncAnimation(fig, animate, init_func=init,
+an = str(input('Animate?  (y/n)'))
+if an == 'y':
+    anim = FuncAnimation(fig, animate, init_func=init,
                                frames=360, interval=20, blit=True)
+    anim.save(datadir / 'Figures/evap_func.mp4', fps=30, dpi = 500)
+else:
+    KeyboardInterrupt
 # Save
-anim.save('Figures/Model Steps/Nonlinear Model/evap_func.mp4', fps=30, dpi = 500)

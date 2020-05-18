@@ -6,7 +6,7 @@ from scipy.optimize import curve_fit
 import scipy.signal as sig 
 import matplotlib.pyplot as plt 
 from ipywidgets import interact
-
+from dataconfig import datadir
 
 # %%
 def time_to_boil(Tf, V):
@@ -62,8 +62,8 @@ beta2, _ = curve_fit(Linear_approx,Vspan,  parms.T[1], p0 = [50,1])
 
 # %%
 
-my_path1 =  'i:/UserData/Documents/ChemEng/CSC/New Model (March)/Figures'
-my_file1 = 'Linear_parameters.png'
+my_path1 =  datadir
+my_file1 = r'Figures/Linear_parameters.png'
 
 # %%
 fig1, (ax1, ax2) = plt.subplots(2, 1, sharex=True)
@@ -83,8 +83,7 @@ fig1.tight_layout()
 fig1.savefig(os.path.join(my_path1, my_file1), dpi = 200)
 fig1.show()
 
-my_path2 =  'i:/UserData/Documents/ChemEng/CSC/New Model (March)/Figures'
-my_file2 = 'Step_responses_SO_Model_Boil_times.png'
+my_file2 = r'Figures/LinearParmsResponse.png'
 
 
 # %%
@@ -97,7 +96,7 @@ for V in Vspan:
 ax.legend(loc = 4)
 ax.set_xlabel('Time \n Seconds')
 ax.set_ylabel('Temperature \n $^\circ$C')
-fig3.savefig(os.path.join(my_path2, my_file2), dpi = 200)
+fig3.savefig(os.path.join(my_path1, my_file2), dpi = 200)
 fig3.show()
 
 # %%

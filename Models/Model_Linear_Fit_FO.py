@@ -4,8 +4,9 @@ import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit, fsolve
 from scipy.signal import lti, lsim
 from scipy.interpolate import interp1d
+from dataconfig import datadir
 
-df_Aux = pandas.read_csv('Data/Cleaned_70L_Step_data.csv')
+df_Aux = pandas.read_csv(datadir / 'Cleaned_70L_Step_data.csv')
 # 70L step test data
 
 xdata, ydata = df_Aux['time'].tolist(), df_Aux['tem'].tolist()

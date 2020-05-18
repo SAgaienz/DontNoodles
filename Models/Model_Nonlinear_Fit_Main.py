@@ -4,8 +4,9 @@ from scipy.integrate import solve_ivp
 from scipy.interpolate import interp1d
 import pandas
 from scipy.signal import square
+from dataconfig import datadir
 
-df = pandas.read_csv('Data/Cleaned_70L_Step_data.csv')
+df = pandas.read_csv(datadir / 'Cleaned_70L_Step_data.csv')
 xdata, ydata = df['time'].tolist(), df['tem'].tolist()
 
 def HVS(T, Ts):
