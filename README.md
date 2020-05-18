@@ -3,5 +3,3 @@
 A repository for a research project from the department of Chemical Engineering at the University of Pretoria (Tuks). This undergraduate research project is aimed to explore the nature of the linearity and general dynamics (modelling) of a Brewery's (Tuks Brewery) vessel. The project also aims to offer control solutions for this brewing vessel (hot liquor tank).
 
 Models (non-linear and linear) models, simulation files, Data (temperature logs) and figures, used for this research project, are all found in this repository. 
-
-Theme by the Dracula team. <https://draculatheme.com> (If you don't know them go check them out, they have great themes!).
