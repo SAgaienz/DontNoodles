@@ -80,7 +80,7 @@ ax2.set(xlabel='Volume \n Litres', ylabel='ζ ')
 ax2.legend(loc = 'best')
 
 fig1.tight_layout()
-fig1.savefig(os.path.join(my_path1, my_file1), dpi = 200)
+fig1.savefig(datadir / my_file1, dpi = 300)
 fig1.show()
 
 my_file2 = r'Figures/LinearParmsResponse.png'
@@ -96,7 +96,7 @@ for V in Vspan:
 ax.legend(loc = 4)
 ax.set_xlabel('Time \n Seconds')
 ax.set_ylabel('Temperature \n $^\circ$C')
-fig3.savefig(os.path.join(my_path1, my_file2), dpi = 200)
+fig3.savefig(datadir / my_file2, dpi = 300)
 fig3.show()
 
 # %%

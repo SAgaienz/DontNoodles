@@ -6,6 +6,7 @@ import numpy as np
 from collections import Counter
 from dateutil.parser import parse 
 import sys
+import pandas
 from os.path import exists
 try:
 
@@ -144,6 +145,11 @@ try:
     xdata, ydata = data_to_plot(which_db, which_tab, probes_to_plt)
     plotter(xdata, ydata)
 
+    exp_data = str(input('-Export data? (y/n)  '))
+    if exp_data =='y':
+        exp_data_dir = str(input('Path to save? (incl. name.csv)  '))
+        df = pandas.DataFrame(data = list(map(list, zip(*[xdata['AUX'], ydata['AUX']]))), columns=['t', 'T'])
+        df.to_csv(exp_data_dir)
 except KeyboardInterrupt:
     print("Keyboard Interrupt")
 

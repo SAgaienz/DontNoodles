@@ -6,7 +6,7 @@ from scipy.optimize import curve_fit
 from datetime import datetime
 from dataconfig import datadir
 # Parsing and cleaning....
-df_raw = pd.read_csv(datadir / r'ProbeDynamics.csv')
+df_raw = pd.read_csv(datadir / 'ProbeDynamics.csv')
 is_Aux = df_raw['name'] == 'AUX'
 df_Aux = df_raw[is_Aux]
 df_Aux = df_Aux.reset_index(drop=True)
@@ -33,7 +33,7 @@ def U(t):
     if t<196:
         return 0
     if t>=196:
-        return 68.3125
+        return 72
 
 def resp(xdata, K, τ):
     res = []
