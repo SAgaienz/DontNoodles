@@ -64,24 +64,16 @@ def U(t):
     if t>15000:
         return 0
 
-def U1(t):
-    if t>=0 and t<33:
+def U1(t): 
+    if t<=33:
         return 0
-    if t>=33 and t<5000:
+    if t>33 and t<=3600*2.5:
         return 3000
-    if t>=5000 and t<6000:
-        return 0
-    if t>=5000 and t<7000:
-        return 3000
-    if t>=7000 and t<9000:
-        return 0
-    if t>=7000 and t<9000:
-        return 3000
-    if t>=9000 and t<10000:
-        return 0
-    if t>=10000 and t<3600*6:
-        return 3000
-    else:
+    if t>3600*2.5 and t<=4.5*3600:
+        return 0    
+    if t>4.5*3600 and t<=8*3600:
+        return 1500
+    if t>8*3600:
         return 0
 
 def U2(t): # Pulse
@@ -95,7 +87,7 @@ def sus_step(t):
 
 Ts = 27 # °C (Surrounds Temperature)
 T0 = Ts # °C (Initial temp of liquid, we assume the surrounds temperature does not change)
-V0 = 70 # L (initial Voume in L)
+V0 = 60 # L (initial Voume in L)
 m_v0 = 0 # kg (initial mass of water in vapour phase)
 h = 15 # W/m2.K (Assumption for now... )
 Tboil = 95 # °C (classical boiling point at the system P)
@@ -104,7 +96,7 @@ T_ev_s = 90 # °C (temperature we expect to start having evaporation (nucleate b
 tf = 3600*12
 tspan = np.linspace(0, tf, 100000)
 argus = [T0, V0, m_v0, Ts, Tboil, T_ev_s, h]
-_, ans, Uspan, diffs = NonLinearModel(tspan, sus_step, argus)
+_, ans, Uspan, diffs = NonLinearModel(tspan, U1, argus)
 
 plt.subplot(5,1,1)
 plt.ylabel('Temperature, °C')
