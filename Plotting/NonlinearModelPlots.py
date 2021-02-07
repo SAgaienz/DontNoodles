@@ -4,7 +4,9 @@ import numpy as np
 
 rc("text", usetex=True)
 rc("font", family="serif")
+datadir = '/run/media/sagaienz/Internal/UserData/Documents/ChemEng/CSC/Poster'
 rep_repo_dir = "/home/sagaienz/ChemEng/CSC/CSC411 Report Repo/Figures/Results"
+
 def Euler(func, tspan, y0, args):
     ylist = []
     y = y0

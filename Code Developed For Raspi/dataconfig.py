@@ -3,8 +3,8 @@ from sys import platform
 
 
 config = configparser.ConfigParser()
-if os.path.exists(r'/home/sagaienz/Internal/UserData/Documents/ChemEng/CSC/CSC411 Source Code Repo/Models/config.ini'):
-    config.read(r'/home/sagaienz/Internal/UserData/Documents/ChemEng/CSC/CSC411 Source Code Repo/Models/config.ini')   
+if os.path.exists(r'Models/config.ini'):
+    config.read(r'Models/config.ini')   
 
     if platform == "linux":
         datadir = pathlib.Path(config['PathLinux']['bulkdir']).expanduser()

@@ -4,9 +4,12 @@ import scipy.signal as sig
 import matplotlib.pyplot as plt 
 from scipy.optimize import curve_fit
 from datetime import datetime
+
+from dataconfig import datadir
+
 # from Models.ProbeDynamics.dataconfig import bulk_dir
 # Parsing and cleaning....
-df_raw = pd.read_csv('/home/zephyr/Internal/UserData/Documents/ChemEng/CSC/CSC411 Source Code Repo/Data/ProbeDynamics.csv')
+df_raw = pd.read_csv(datadir / r'ProbeDynamics.csv')
 is_Aux = df_raw['name'] == 'AUX'
 df_Aux = df_raw[is_Aux]
 df_Aux = df_Aux.reset_index(drop=True)

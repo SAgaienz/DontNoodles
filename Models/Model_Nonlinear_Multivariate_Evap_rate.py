@@ -27,33 +27,22 @@ Tspan = np.linspace(85+273.15, 273.15 + 100, 100)
 Tspan, Uspan = np.meshgrid(Tspan, Uspan)
 r_ev = R_evap(Tspan, 70, Uspan, [273.15+27, 96+273.15, 90+273.15, 15])
 
-
+print(np.shape(r_ev))
 #plot 
 
-norm = plt.Normalize(r_ev.min(), r_ev.max())
-colors = cm.viridis(norm(r_ev))
-rcount, ccount, _ = colors.shape
+# norm = plt.Normalize(r_ev.min(), r_ev.max())
+# colors = cm.viridis(norm(r_ev))
+# rcount, ccount, _ = colors.shape
 
-fig = plt.figure()
-ax = Axes3D(fig)
+# fig = plt.figure()
+# ax = Axes3D(fig)
 
-def init():
-    ax.plot_wireframe(Tspan, Uspan, r_ev,  rcount=rcount*0.25, ccount=ccount*0.25, cmap=cm.viridis)
-    ax.set_xlabel('Liquid Temperature , °C')
-    ax.set_ylabel('Element Input Power , W')
-    ax.set_zlabel('Rate of Evaporation , kg/s')
-    return fig,
+# ax.plot_wireframe(Tspan, Uspan, r_ev,  rcount=rcount*0.25, ccount=ccount*0.25, cmap=cm.viridis)
+# ax.set_xlabel('Liquid Temperature , °C')
+# ax.set_ylabel('Element Input Power , W')
+# ax.set_zlabel('Rate of Evaporation , kg/s')
+# plt.show()
 
-def animate(i):
-    ax.view_init(elev=30., azim=i)
-    return fig,
-
-
-# Animate
-an = str(input('Animate?  (y/n)'))
-if an == 'y':
-    anim = FuncAnimation(fig, animate, init_func=init,
-                               frames=360, interval=20, blit=True)
-    anim.save(datadir / r'Multivariable_evap_func.mp4', fps=30, dpi = 500)
-else:
-    KeyboardInterrupt
+r_ev = r_ev.reshape(len(Tspan), len(Uspan))
+plt.contour([Tspan, Uspan], r_ev)
+plt.show()

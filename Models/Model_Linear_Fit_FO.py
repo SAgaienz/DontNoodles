@@ -109,4 +109,4 @@ plt.tight_layout()
 if save_figs:
     print('saved')
     fig2.savefig(datadir / r'Figures/FOD2MOD.png', dpi = 300)
-# plt.show()
+plt.show()
